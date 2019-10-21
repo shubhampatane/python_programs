@@ -1,3 +1,5 @@
+#This programes requires names.csv file
+#Guess the bolllywood movie name, You have got 6 chances
 def display(movie,found,error):
     l = []
     d = []
