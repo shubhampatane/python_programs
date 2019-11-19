@@ -1,0 +1,25 @@
+f = []
+for i in range(11):
+    f.append(0)
+flag = 1
+while flag:
+    print(f)
+    s = input("Enter a string")
+    if s=="":
+        flag = 0
+        break
+    t = [0,0,0]
+    for i in s:
+        t[0] += ord(i)
+        t[1] += ord(i)**2
+        t[2] += (ord(i)+2)**2
+    t[0] = t[0]%5
+    t[1] = t[1]%7
+    t[2] = t[2]%11
+    x = f[t[0]] + f[t[1]] +f[t[2]]
+    if x == 3:
+        print("Probably Present")
+    else:
+        print("Absent")
+    for i in t:
+        f[i] = 1    
