@@ -1,0 +1,151 @@
+# Suzuki Kasami Algotithm by Shubhu
+import time
+def menu(last,req,q):
+    print("******************************************************************")
+    print("Request critical section. Leave blank if not required.")
+    print("Press 1 for P1, 2 for P2 and so on")
+    print("For multiple requests press leave space in between eg: 1 2 4")
+    print("Enter -1 to exit")
+    print("******************************************************************")
+    n = input()
+    
+    if n=="":
+        if q == []:
+            print("Empty que exiting")
+            return 1
+        print("Current Quee is " + str(q))
+        p = q[0]
+        del q[0]
+        req[p-1] = req[p-1] + 1 
+        print("Process is " + str(req))
+        print("Token List is " + str(last))
+        print("Process " + str(p) + " is in critical section. Please wait")
+        time.sleep(2)
+        print("Process " + str(p) + " is out of critical section")
+        last[p-1] = last[p-1] + 1
+        print("Token List is " + str(last))
+        return 0
+    elif n == "-1":
+        print("Exiting System")
+        return 1
+    else:
+        j = n.split(" ")
+        for i in j:
+            q.append(int(i))
+        print("Current Quee is " + str(q))
+        p = q[0]
+        del q[0]
+        req[p-1] = req[p-1] + 1 
+        print("Process is " + str(req))
+        print("Token List is " + str(last))
+        print("Process " + str(p) + " is in critical section. Please wait")
+        time.sleep(2)
+        print("Process " + str(p) + " is out of critical section")
+        last[p-1] = last[p-1] + 1
+        print("Token List is " + str(last))
+        return 0
+
+print('*****Welcome to Suzuki Kasami Broadcast Algorithm*****')
+print("Let there be 4 processes P1,P2,P3,P4")
+print("Req[0,0,0,0], Last[0,0,0,0], Q(1)")
+
+last = [0,0,0,0]
+req = [0,0,0,0]
+q = [1,2,3,4]
+flag = 0
+while flag==0:
+    flag =menu(last,req,q)
+    
+    
+''' output:
+
+*****Welcome to Suzuki Kasami's Broadcast Algorithm*****
+Let there be 4 processes P1,P2,P3,P4
+Req[0,0,0,0], Last[0,0,0,0], Q(1)
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+2 4
+Current Quee is [1, 2, 3, 4, 2, 4]
+Process is [1, 0, 0, 0]
+Token List is [0, 0, 0, 0]
+Process 1 is in critical section. Please wait
+Process 1 is out of critical section
+Token List is [1, 0, 0, 0]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+
+Current Quee is [2, 3, 4, 2, 4]
+Process is [1, 1, 0, 0]
+Token List is [1, 0, 0, 0]
+Process 2 is in critical section. Please wait
+Process 2 is out of critical section
+Token List is [1, 1, 0, 0]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+
+Current Quee is [3, 4, 2, 4]
+Process is [1, 1, 1, 0]
+Token List is [1, 1, 0, 0]
+Process 3 is in critical section. Please wait
+Process 3 is out of critical section
+Token List is [1, 1, 1, 0]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+
+Current Quee is [4, 2, 4]
+Process is [1, 1, 1, 1]
+Token List is [1, 1, 1, 0]
+Process 4 is in critical section. Please wait
+Process 4 is out of critical section
+Token List is [1, 1, 1, 1]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+
+Current Quee is [2, 4]
+Process is [1, 2, 1, 1]
+Token List is [1, 1, 1, 1]
+Process 2 is in critical section. Please wait
+Process 2 is out of critical section
+Token List is [1, 2, 1, 1]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+3
+Current Quee is [4, 3]
+Process is [1, 2, 1, 2]
+Token List is [1, 2, 1, 1]
+Process 4 is in critical section. Please wait
+Process 4 is out of critical section
+Token List is [1, 2, 1, 2]
+******************************************************************
+Request critical section. Leave blank if not required.
+Press 1 for P1, 2 for P2 and so on
+For multiple requests press leave space in between eg: 1 2 4
+Enter -1 to exit
+******************************************************************
+-1
+Exiting System
+'''
